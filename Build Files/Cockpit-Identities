@@ -1,0 +1,21 @@
+# Maintainer: Ryan Van Massenhoven <ryanvanmassenhoven@gmail.com>
+
+_plugin=identities
+pkgname=cockpit-${_plugin}
+pkgver=0.1.10
+pkgrel=1
+pkgdesc="A Cockpit plugin to easily manage samba and NFS file sharing."
+arch=("any")
+url="https://github.com/45Drives/cockpit-identities"
+license=("GPL3")
+depends=("cockpit" "python" )
+makedepends=("cockpit" "make")
+provides=("${pkgname}")
+conflicts=("${pkgname}-bin" "${pkgname}-git")
+source=("${url}/releases/download/v${pkgver}/${pkgname}_${pkgver}_generic.tar.gz")
+sha512sums=("c6e573110fab2a04114be50ea3db0be9f52e1524ddaa3de7b90dc83dd6b308ab8b74e14906f8cc28ec4359be67bafd20439aef352b4b2e9fbd15d5a76d303717")
+
+package() {
+        cd ${srcdir}/${pkgname}_${pkgver}_generic
+        sudo make install
+}

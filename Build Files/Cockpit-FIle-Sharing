@@ -1,0 +1,21 @@
+# Maintainer: Ryan Van Massenhoven <ryanvanmassenhoven@gmail.com>
+
+_plugin=file-sharing
+pkgname=cockpit-${_plugin}
+pkgver=3.2.0
+pkgrel=1
+pkgdesc="A Cockpit plugin to easily manage samba and NFS file sharing."
+arch=("any")
+url="https://github.com/45Drives/cockpit-file-sharing"
+license=("GPL3")
+depends=("cockpit" "python" "samba" "nfs-utils")
+makedepends=("cockpit" "make")
+provides=("${pkgname}")
+conflicts=("${pkgname}-bin" "${pkgname}-git")
+source=("${url}/releases/download/v${pkgver}/${pkgname}_${pkgver}_generic.tar.gz")
+sha512sums=("6bb11fc937d71b0179d0f226d63a837c89a8bef4ad3d61e478377f229a9bcc34a7f83a7702d720fabb76197ed8d4e0a9644de60c3d8cb367925076a41057d55b")
+
+package() {
+        cd ${srcdir}/${pkgname}_${pkgver}_generic
+        sudo make install
+}
